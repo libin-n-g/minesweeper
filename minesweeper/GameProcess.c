@@ -261,52 +261,18 @@ void UpdateField(int nMinefield[][SIZE])
 	{
 		for (j = 0; j < SIZE; j++)
 		{
-			if (nMinefield[i][j] == - 1)
+			if (nMinefield[i][j] == MINE)
 			{
-				if (i < 1 || i > 8)
+				for (k = i - 1; k <= 1 + 1; k++)
 				{
-					if (i > 8)
+					for (l = j - 1; l <= j + 1; l++)
 					{
-						initk = (i - 1);
-						fink = 8;
-					}
-					else
-					{
-						initk = 1;
-						fink = (i + 1);
-					}
-				}
-				else
-				{
-					initk = (i - 1);
-					fink = (i + 1);
-				}
-
-				for (k = initk; k <= fink; k++)
-				{
-					if (j < 1 || j > 8)
-					{
-						if (j > 8)
+						if ((k >= 0) && (k < SIZE) && (l >= 0) && (l < SIZE))
 						{
-							initl = (j - 1);
-							finl = 8;
-						}
-						else
-						{
-							initl = 1;
-							finl = (j + 1);
-						}
-					}
-					else
-					{
-						initl = (j - 1);
-						finl = (j + 1);
-					}
-					for (l = initl; l <= finl; l++)
-					{
-						if ((nMinefield[k][l] != MINE) &&(k >= 0) &&(k < SIZE) &&(l >= 0) &&(l < SIZE))
-						{
-							++nMinefield[k][l];
+							if ((nMinefield[k][l] != MINE))
+							{
+								++nMinefield[k][l];
+							}
 						}
 					}
 				}
