@@ -87,7 +87,7 @@ void main()
 		printf("\n\n\n");
 		DisplayMatrix2(nMinefield);  //shows the uncovered matrix 
 		printf("\n\n\n");
-		_getch();
+		system("pause");
 		system("cls");
 		
 		PrintResult(nFlag);
@@ -255,7 +255,7 @@ void GenerateMinePosition(int nNoOfMines, int nMineRow[], int nMineColumn[])
 //function to update the Minefield to display the number of mines surronding a slot
 void UpdateField(int nMinefield[][SIZE])
 {
-	int i, j, k, l;         //loop variables
+	int i, j, k, l,initk,initl,fink,finl;         //loop variables
 
 	for (i = 0; i < SIZE; i++)
 	{
@@ -263,9 +263,46 @@ void UpdateField(int nMinefield[][SIZE])
 		{
 			if (nMinefield[i][j] == - 1)
 			{
-				for (k = (i - 1); k <= (i + 1); k++)
+				if (i < 1 || i > 8)
 				{
-					for (l = (j - 1); l <= (j + 1); l++)
+					if (i > 8)
+					{
+						initk = (i - 1);
+						fink = 8;
+					}
+					else
+					{
+						initk = 1;
+						fink = (i + 1);
+					}
+				}
+				else
+				{
+					initk = (i - 1);
+					fink = (i + 1);
+				}
+
+				for (k = initk; k <= fink; k++)
+				{
+					if (j < 1 || j > 8)
+					{
+						if (j > 8)
+						{
+							initl = (j - 1);
+							finl = 8;
+						}
+						else
+						{
+							initl = 1;
+							finl = (j + 1);
+						}
+					}
+					else
+					{
+						initl = (j - 1);
+						finl = (j + 1);
+					}
+					for (l = initl; l <= finl; l++)
 					{
 						if ((nMinefield[k][l] != MINE) &&(k >= 0) &&(k < SIZE) &&(l >= 0) &&(l < SIZE))
 						{
@@ -282,7 +319,7 @@ void UpdateField(int nMinefield[][SIZE])
 // function stores input from the user
 coord RecieveInput(coord input)
 {
-	printf("\n\n ENTER THE ACTION \ns for select\nf for flag \nr for reset flag\ne for exit from current game\n(use arrow keys to navigate through MineField )\n");
+	printf("\n\n ENTER THE ACTION %d\ns for select\nf for flag \nr for reset flag\ne for exit from current game\n(use arrow keys to navigate through MineField )\n",temp);
 	do
 	{
 		input.action = GetSelectedInput();
@@ -414,7 +451,7 @@ int ProcessInput(coord input, int nMinefield[][SIZE], char chInterfaceMatrix[][S
 	}
 	else if (input.action == EXITGAME)
 	{
-		nState = STATE::EXIT;
+		nState = EXIT;
 	}
 	else if (input.action == ARROW)
 	{
@@ -436,12 +473,7 @@ void DisplayMatrix(char chInterfaceMatrix[][SIZE][2])
 {
 	int i, j;
 	SelectColour(temp);
-	//printf("\t ");
-	//for (i = 0; i < SIZE; i++)  //diplays column number
-	//{
-	//	printf("\t%d", i+1);
-	//}
-	//printf("\n");
+
 	printf("\t------------------------------------------------------------------------\n");
 
 	for (i = 0; i < SIZE; i++)
@@ -453,15 +485,12 @@ void DisplayMatrix(char chInterfaceMatrix[][SIZE][2])
 		{
 			if (j!=0)
 			{
-				//SelectColour(240);
-				//printf("\t");
-				//SelectColour(15);
+
 				RevealSlot(chInterfaceMatrix, i, j);
 			}
 			else
 			{
-				//SelectColour(15);
-				//printf("\t");
+
 				RevealSlot(chInterfaceMatrix, i, j);
 			}
 		}
@@ -495,7 +524,7 @@ void DisplayMatrix2(int nMineField[][SIZE])
 		printf("\n");
 		printf("\n");
 	}
-	printf("    PRESS ENTER TO CONTINUE....");
+	//printf("    PRESS ENTER TO CONTINUE....");
 	return;
 }
 

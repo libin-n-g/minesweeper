@@ -485,8 +485,8 @@ void Win(void)
 	usleep(nLagg * 100);
 #endif
 	
-	printf("\n\nPress any key --> ");
-	_getch();
+	//printf("\n\nPress any key --> ");
+	system("pause");
 	system("cls");
 	
 
