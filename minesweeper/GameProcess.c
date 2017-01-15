@@ -255,7 +255,7 @@ void GenerateMinePosition(int nNoOfMines, int nMineRow[], int nMineColumn[])
 //function to update the Minefield to display the number of mines surronding a slot
 void UpdateField(int nMinefield[][SIZE])
 {
-	int i, j, k, l,initk,initl,fink,finl;         //loop variables
+	int i, j, k, l;         //loop variables
 
 	for (i = 0; i < SIZE; i++)
 	{
@@ -263,9 +263,9 @@ void UpdateField(int nMinefield[][SIZE])
 		{
 			if (nMinefield[i][j] == MINE)
 			{
-				for (k = i - 1; k <= 1 + 1; k++)
+				for (k = (i - 1); k <= (i + 1); k++)
 				{
-					for (l = j - 1; l <= j + 1; l++)
+					for (l = (j - 1); l <= (j + 1); l++)
 					{
 						if ((k >= 0) && (k < SIZE) && (l >= 0) && (l < SIZE))
 						{
