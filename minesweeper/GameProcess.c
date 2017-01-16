@@ -248,8 +248,6 @@ void GenerateMinePosition(int nNoOfMines, int nMineRow[], int nMineColumn[])
 
 		}
 	}
-
-
 }
 
 //function to update the Minefield to display the number of mines surronding a slot
